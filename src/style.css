@@ -1,0 +1,234 @@
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700;800;900&display=swap");
+
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+
+img {
+  width: 100%;
+}
+
+body {
+  background: #ddd;
+  font-size: 18px;
+  font-family: "Poppins", sans-serif;
+  margin: 50px;
+  overflow-x: hidden;
+}
+
+.container {
+  display: grid;
+  gap: 5px;
+}
+
+/* Header */
+.header {
+  display: grid;
+  grid-template-areas:
+    "hero hero feature-1"
+    "hero hero feature-2";
+}
+
+.hero {
+  grid-area: hero;
+  min-height: 300px;
+  background-image: url(./assets/img/sodamn2.jpeg);
+  background-size: cover;
+  background-color: #ddd;
+  background-position: 0 25%;
+  padding: 50px;
+}
+
+.hero > * {
+  display: none;
+}
+
+.features {
+  display: grid;
+  background-color: black;
+  color: white;
+  place-content: center;
+  text-align: center;
+  cursor: pointer;
+}
+
+.feature-1 {
+  grid-area: feature-1;
+  min-height: 100%;
+  background-image: url(./assets/img/sodamn1.jpeg);
+  background-size: cover;
+  background-color: #ddd;
+  background-position: 0 25%;
+}
+
+.feature-2 {
+  grid-area: feature-2;
+  min-height: 100%;
+  background-image: url(./assets/img/sodamn3.jpeg);
+  background-size: cover;
+  background-color: #ddd;
+  background-position: 0 25%;
+}
+
+.features .price {
+  font-size: 2em;
+  font-weight: 400;
+}
+/* /Header */
+
+/* Menu Navigation */
+.menu {
+  order: -1;
+  display: grid;
+  grid-template-columns: 1fr 2fr;
+  align-items: center;
+}
+
+.menu .brand {
+  font-size: 1.5em;
+  color: #333;
+}
+
+.menu ul {
+  list-style: none;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
+  gap: 5px;
+}
+
+.menu a {
+  display: block;
+  background-color: #000;
+  text-decoration: none;
+  text-align: center;
+  color: #fff;
+  padding: 0.5em;
+  text-transform: uppercase;
+  font-size: 0.9em;
+}
+/* /Menu Navigation*/
+
+/* Hamburger Menu */
+.menu-toggle {
+  z-index: 10;
+  display: none;
+  flex-direction: column;
+  height: 20px;
+  justify-content: space-between;
+  position: relative;
+}
+
+.menu-toggle input {
+  position: absolute;
+  width: 40px;
+  height: 28px;
+  top: -5px;
+  left: -6px;
+  opacity: 0;
+  cursor: pointer;
+  z-index: 10;
+}
+
+.menu-toggle span {
+  display: block;
+  height: 3px;
+  width: 28px;
+  background-color: black;
+  border-radius: 3px;
+  transition: all 0.5s;
+}
+
+.menu-toggle span:nth-child(2) {
+  transform-origin: 0 0;
+}
+
+.menu-toggle span:nth-child(4) {
+  transform-origin: 0 100%;
+}
+
+.menu-toggle input:checked ~ span:nth-child(2) {
+  background-color: #fff;
+  transform: rotate(45deg) translate(-1px, -1px);
+}
+
+.menu-toggle input:checked ~ span:nth-child(3) {
+  opacity: 0;
+  transform: scale(0);
+}
+
+.menu-toggle input:checked ~ span:nth-child(4) {
+  background-color: #fff;
+  transform: rotate(-45deg) translate(-1px, 0);
+}
+/* Hamburger Menu */
+
+/* Responsive Breakpoitn */
+@media screen and (max-width: 1024px) {
+  .menu {
+    order: inherit;
+    grid-template-columns: 1fr;
+  }
+
+  .menu .brand {
+    display: none;
+  }
+
+  .hero {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: start;
+  }
+
+  .hero > * {
+    display: block;
+    background-color: rgba(0, 0, 0, 0.5);
+    color: white;
+    padding: 5px;
+    margin-bottom: 5px;
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .menu {
+    order: -1;
+    justify-items: end;
+    margin-bottom: 10px;
+  }
+  .menu-toggle {
+    display: flex;
+  }
+  .menu ul {
+    display: flex;
+    flex-direction: column;
+    z-index: 1;
+    position: absolute;
+    left: 0;
+    top: 0;
+    height: 100%;
+    width: 100%;
+    background-color: black;
+    justify-content: space-evenly;
+    align-items: center;
+    transform: translateY(-100%);
+    transition: all 0.5s;
+    opacity: 0;
+  }
+
+  .menu ul.active {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@media screen and (max-width: 675px) {
+  .header {
+    grid-template-areas:
+      "hero"
+      "feature-1"
+      "feature-2";
+  }
+}
+/* Responsive Breakpoitn */
